@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="header">
+    <view class="title">AI训练师-理论复习</view>
+    <view class="subtitle">开始你的学习之旅</view>
+  </view>
+  <view class="stats-card">
+    <view class="stat-item">
+      <view class="stat-value">{{totalDone}} <text class="stat-unit">/ {{totalQuestions}}</text></view>
+      <view class="stat-label">总进度</view>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <view class="stat-value">{{accuracy}}<text class="stat-unit">%</text></view>
+      <view class="stat-label">总正确率</view>
+    </view>
+  </view>
+  <view class="menu-grid">
+    <view class="menu-item" bindtap="goToQuiz" data-type="mistakes">
+      <view class="menu-icon icon-mistake"></view>
+      <view class="menu-title">我的错题本</view>
+      <view class="menu-count">{{mistakeCount}} 道</view>
+    </view>
+    <view class="menu-item" bindtap="goToQuiz" data-type="favorites">
+      <view class="menu-icon icon-favorite"></view>
+      <view class="menu-title">我的收藏</view>
+      <view class="menu-count">{{favoriteCount}} 道</view>
+    </view>
+  </view>
+  <view class="category-title">分类练习</view>
+  <view class="category-card" wx:for="{{categories}}" wx:key="type">
+    <view class="category-info">
+      <view class="category-name">{{item.name}}</view>
+      <view class="category-stats">{{item.done}} / {{item.total}}</view>
+    </view>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{item.progress}}%;"></view>
+    </view>
+    <view class="btn-group">
+      <button class="category-btn" size="mini" bindtap="goToQuiz" data-type="{{item.type}}" data-mode="unanswered">未做练习</button>
+      <button class="category-btn primary" size="mini" bindtap="goToQuiz" data-type="{{item.type}}" data-mode="all">全部练习</button>
+    </view>
+  </view>
+  <view class="reset-btn" bindtap="resetProgress">清空并重置所有学习记录</view>
+</view>
